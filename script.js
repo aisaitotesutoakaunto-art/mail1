@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxj1glSLwh79ITUeIL1GCqdwG8GEwunHc0RuvnrQD0kg8EvHCn8QUkaSEMPJfkDvLvX0g/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwP_vUhLK-WcsQBQvYAebrX13eCwFiw3wqxMERmXf2p0vsvNgQkbpc32w5mFVQL6knm/exec";
 
 document.getElementById("send").addEventListener("click", async () => {
   // フォームの値を取得
