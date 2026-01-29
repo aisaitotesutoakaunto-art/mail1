@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>アンケートフォーム</title>
+</head>
+<body>
+  <h1>アンケート</h1>
+
+  <form id="surveyForm">
+    <div>
+      <label>お名前</label><br>
+      <input type="text" name="name" required>
+    </div>
+
+    <div>
+      <label>メールアドレス</label><br>
+      <input type="email" name="email" required>
+    </div>
+
+    <div>
+      <label>ご意見</label><br>
+      <textarea name="message" required></textarea>
+    </div>
+
+    <button type="submit">送信</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    const API_URL = "★ここにGASの /exec URL を入れる★";
+
+    document.getElementById("surveyForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      document.getElementById("result").textContent = result.message;
+    });
+  </script>
+</body>
+</html>
