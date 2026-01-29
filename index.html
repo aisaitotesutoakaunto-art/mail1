@@ -5,49 +5,47 @@
   <title>アンケートフォーム</title>
 </head>
 <body>
+
   <h1>アンケート</h1>
 
   <form id="surveyForm">
     <div>
-      <label>お名前1</label><br>
-      <input type="text" name="name" required>
+      <label for="name">お名前</label><br>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        autocomplete="name"
+        required
+      >
     </div>
 
     <div>
-      <label>メールアドレス</label><br>
-      <input type="email" name="email" required>
+      <label for="email">メールアドレス</label><br>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        autocomplete="email"
+        required
+      >
     </div>
 
     <div>
-      <label>ご意見</label><br>
-      <textarea name="message" required></textarea>
+      <label for="message">ご意見</label><br>
+      <textarea
+        id="message"
+        name="message"
+        autocomplete="off"
+        required
+      ></textarea>
     </div>
 
-    <button type="submit">送信</button>
+    <button type="button" id="send">送信</button>
   </form>
 
-  <p id="result"></p>
+  <!-- JS読み込み（bodyの一番下） -->
+  <script src="script.js"></script>
 
-  <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbwUQ2SVfCHllTh5z7SuAoRHPBfD9CBQjhuuxhTE6m_wRZ3Py_74uzD4I43iJU4KoPK26A/exec";
-
-    document.getElementById("surveyForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData.entries());
-
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-
-      const result = await res.json();
-      document.getElementById("result").textContent = result.message;
-    });
-  </script>
 </body>
 </html>
